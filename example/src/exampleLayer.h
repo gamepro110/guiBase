@@ -14,10 +14,13 @@ public:
 public:
     void onAttach() override {
         bitValue--;
+        memset(buff, '\0', IM_ARRAYSIZE(buff));
     }
 
     void onUpdate() override {
         if (ImGui::Begin("example", nullptr, windowFlags)) {
+            ImGui::InputText("label", buff, IM_ARRAYSIZE(buff));
+
             ImGui::PushButtonRepeat(true);
             if (ImGui::Button("+")) {
                 bitValue++;
@@ -44,6 +47,7 @@ public:
     }
 
 private:
+    char buff[100];
     uint8_t bitValue{ 0 };
     std::string printStr{};
     ImGuiWindowFlags windowFlags{ 0 | ImGuiWindowFlags_AlwaysAutoResize };

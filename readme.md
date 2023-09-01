@@ -6,6 +6,11 @@ using [GLFW][glfw] for cross platform window creation. while using [Dear ImGui][
 
 ## Todo
 
+- [ ] check if gui-base can inputText() on linux
+- [ ] check if inputText works on non-wsl works
+
+### backlog
+
 - [ ] fix linux multithreaded build
 - [ ] add tests
 - [ ] fix `cmakepresets.json` not working through wsl in vs2022

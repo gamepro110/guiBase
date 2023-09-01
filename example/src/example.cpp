@@ -9,6 +9,7 @@ bool guiBase::gRunning = true;
 
 #if DEBUG
 #include "imgui.h"
+#include <cstdlib>
 
 class demoLayer : public guiBase::Layer {
 public:
@@ -26,6 +27,11 @@ public:
 
     void onDetach() override {
         LOG_TRACE("detaching demoLayer");
+    }
+
+private:
+    void showConfigVal(const char* text, bool val) {
+        ImGui::Checkbox(text, &val);
     }
 
 private:

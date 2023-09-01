@@ -1,10 +1,11 @@
 #pragma once
 
 #include <guiBase/Layer.h>
+#include <guiBase/Logger.h>
 
-#include <functional>
 #include <memory>
 #include <string>
+#include <typeinfo>
 #include <vector>
 
 struct GLFWwindow;
@@ -32,14 +33,17 @@ namespace guiBase {
         void run();
         void close();
 
-        template<typename T> void PushLayer() {
+        template<typename T>
+        void PushLayer() {
             static_assert(std::is_base_of<Layer, T>::value, "Pushed type is not subclass of Layer!!");
+            LOG_TRACE(std::string("adding ") + typeid(T).name() + " to layerstack");
             layerStack.emplace_back(std::make_shared<T>())->onAttach();
         }
 
         void PushLayer(const std::shared_ptr<Layer>& layer) {
             layerStack.emplace_back(layer);
             layer->onAttach();
+            LOG_TRACE(std::string("added ") + typeid(*layer.get()).name() + " to layerstack");
         }
 
     private:

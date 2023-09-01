@@ -62,6 +62,10 @@ endif()
 
 add_subdirectory(guiBaseLib)
 
+if(PROJECT_IS_TOP_LEVEL)
+    set(buildGuiBaseExample true)
+endif(PROJECT_IS_TOP_LEVEL)
+
 if(buildGuiBaseExample)
 add_subdirectory(example)
 endif()

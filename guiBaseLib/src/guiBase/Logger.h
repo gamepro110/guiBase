@@ -49,22 +49,27 @@ namespace guiBase {
 template<typename T>
 concept stringType = std::same_as<T, std::string_view> || std::same_as<T, std::string> || std::same_as<T, const char*>;
 
-template<stringType T> constexpr auto LOG_CRITICAL(T str) {
+template<stringType T>
+constexpr auto LOG_CRITICAL(T str) {
     return guiBase::Logger::critical(str);
 }
 
-template<stringType T> constexpr auto LOG_ERROR(T str) {
+template<stringType T>
+constexpr auto LOG_ERROR(T str) {
     return guiBase::Logger::error(str);
 }
 
-template<stringType T> constexpr auto LOG_WARNING(T str) {
+template<stringType T>
+constexpr auto LOG_WARNING(T str) {
     return guiBase::Logger::warning(str);
 }
 
-template<stringType T> constexpr auto LOG_INFO(T str) {
+template<stringType T>
+constexpr auto LOG_INFO(T str) {
     return guiBase::Logger::info(str);
 }
 
-template<stringType T> constexpr auto LOG_TRACE(T str) {
+template<stringType T>
+constexpr auto LOG_TRACE(T str) {
     return guiBase::Logger::trace(str);
 }

@@ -1,15 +1,10 @@
 #include "guiBase/App.h"
 
-#include <guiBase/Logger.h>
-
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_vulkan.h"
 #include "imgui.h"
-#include <vulkan/vulkan.h>
 
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
+#include <vulkan/vulkan.h>
 
 #define GLFW_INCLUDE_NONE
 #define GLFW_INCLUDE_VULKAN
@@ -36,11 +31,15 @@ static uint32_t g_MinImageCount = 2;
 static bool g_SwapChainRebuild = false;
 
 void check_vk_result(VkResult err) {
-    if (err == 0)
+    if (err == 0) {
         return;
-    fprintf(stderr, "[vulkan] Error: VkResult = %d\n", err);
-    if (err < 0)
+    }
+
+    LOG_CRITICAL(std::string("[vulkan] Error: VkResult = ") + std::to_string(err));
+
+    if (err < 0) {
         abort();
+    }
 }
 
 static void SetupVulkan(const char** extensions, uint32_t extensions_count) {
@@ -304,13 +303,14 @@ namespace guiBase {
     }
 
     void App::close() {
+        gRunning = false;
     }
 
     void App::init() {
         // setup glfw
         glfwSetErrorCallback(glfw_error_callback);
         if (!glfwInit()) {
-            std::cerr << "could not init GLFW!\n";
+            LOG_CRITICAL("could not init GLFW!\n");
             return;
         }
 
@@ -319,7 +319,7 @@ namespace guiBase {
 
         // setup vulkan
         if (!glfwVulkanSupported()) {
-            std::cerr << "GLFW: Vulkan not supported!\n";
+            LOG_CRITICAL("GLFW: Vulkan not supported!\n");
             return;
         }
         uint32_t extensions_count = 0;
@@ -343,9 +343,9 @@ namespace guiBase {
         ImGuiIO& io = ImGui::GetIO();
         (void)io;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;// Enable Keyboard Controls
-        // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;// Enable Docking
-        // io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
+        // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad; // Enable Gamepad Controls
+        // io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;  // Enable Docking
+        // io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;// Enable Multi-Viewport / Platform Windows
         // io.ConfigViewportsNoAutoMerge = true;
         // io.ConfigViewportsNoTaskBarIcon = true;
 
@@ -438,7 +438,6 @@ namespace guiBase {
     }
 
     void App::run() {
-        // TODO check
         // running = true;
 
         ImGui_ImplVulkanH_Window* wd = &g_MainWindowData;
