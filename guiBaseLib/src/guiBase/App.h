@@ -52,7 +52,7 @@ namespace guiBase {
 
     private:
         WindowSettings settings;
-        GLFWwindow* windowHandle;
+        GLFWwindow* windowHandle = nullptr;
         std::vector<std::shared_ptr<Layer>> layerStack;
     };
 
