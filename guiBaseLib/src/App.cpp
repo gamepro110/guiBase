@@ -344,8 +344,8 @@ namespace guiBase {
         (void)io;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;// Enable Keyboard Controls
         // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad; // Enable Gamepad Controls
-        // io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;  // Enable Docking
-        // io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;// Enable Multi-Viewport / Platform Windows
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;  // Enable Docking
+        io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;// Enable Multi-Viewport / Platform Windows
         // io.ConfigViewportsNoAutoMerge = true;
         // io.ConfigViewportsNoTaskBarIcon = true;
 
@@ -516,10 +516,10 @@ namespace guiBase {
                 ImGui::PopStyleVar(2);
 
                 // Submit the DockSpace
-                io = ImGui::GetIO();
-                if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable) {
+                ImGuiIO& innerIO = ImGui::GetIO();
+                if (innerIO.ConfigFlags & ImGuiConfigFlags_DockingEnable) {
                     ImGuiID dockspace_id = ImGui::GetID("VulkanAppDockspace");
-                    ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
+                    ImGui::DockSpace(dockspace_id, ImVec2(0.0F, 0.0F), dockspace_flags);
                 }
 
                 for (auto& layer : layerStack) {
