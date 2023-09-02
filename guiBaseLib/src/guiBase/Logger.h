@@ -47,7 +47,7 @@ namespace guiBase {
 }// namespace guiBase
 
 template<typename T>
-concept stringType = std::same_as<T, std::string_view> || std::same_as<T, std::string> || std::same_as<T, const char*>;
+concept stringType = std::same_as<T, std::string_view> || std::same_as<T, std::string> || std::same_as<T, const char*> || std::same_as<T, char*>;
 
 template<stringType T>
 constexpr auto LOG_CRITICAL(T str) {
