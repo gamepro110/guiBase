@@ -14,7 +14,7 @@ bool guiBase::gRunning = true;
 class demoLayer : public guiBase::Layer {
 public:
     demoLayer() = default;
-    ~demoLayer() = default;
+    ~demoLayer() override = default;
 
 public:
     void onAttach() override {

@@ -43,7 +43,7 @@ namespace guiBase {
         void PushLayer(const std::shared_ptr<Layer>& layer) {
             layerStack.emplace_back(layer);
             layer->onAttach();
-            LOG_TRACE(std::string("added ") + typeid(*layer.get()).name() + " to layerstack");
+            LOG_TRACE(std::string("added ") + typeid(layer).name() + " to layerstack");
         }
 
     private:
