@@ -10,8 +10,12 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(USE_LD "" CACHE STRING "which linker to use")
+set_property(CACHE USE_LD PROPERTY STRINGS "" "bfd" "gold" "lld" "mold")
+
 option(buildGuiBaseExample "should the example be build?" false)
 option(buildGuiBaseMultiThreaded "should the lib be build multithreaded?" true)
+
 
 add_subdirectory(vendor)
 
@@ -33,6 +37,10 @@ endif()
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     # for GCC and Clang
     add_compile_options(-Wall -Werror -Wextra -Wconversion -Wunused)
+
+    if (USE_LD)
+        add_link_options(-fuse-ld=mold) # force use mold linker, faster linking
+    endif()
     if(buildGuiBaseMultiThreaded)
         #TODO fix multithreaded build
         #include(ProcessorCount)
