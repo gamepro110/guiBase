@@ -39,7 +39,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     add_compile_options(-Wall -Werror -Wextra -Wconversion -Wunused)
 
     if (USE_LD)
-        add_link_options(-fuse-ld=mold) # force use mold linker, faster linking
+        add_link_options(-fuse-ld=${USE_LD}) # force use mold linker, faster linking
     endif()
     if(buildGuiBaseMultiThreaded)
         #TODO fix multithreaded build
