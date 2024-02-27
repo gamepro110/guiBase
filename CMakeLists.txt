@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.22)
 project(guiBase)
 
 find_package(Vulkan REQUIRED) # must be before vender include to prevent the broken GLFW custom include
