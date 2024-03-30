@@ -6,7 +6,7 @@ set(GLFW_BUILD_DOCKS OFF CACHE BOOL "")
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "")
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "")
 
-option(buildGuiBaseWayland "should guiBase be build with wayland instead of x11?" false)
+option(buildGuiBaseWayland "should guiBase be build with wayland instead of x11?" true)
 if (buildGuiBaseWayland)
 # enable wayland and disable x11
 set(GLFW_BUILD_WAYLAND ON CACHE BOOL "")

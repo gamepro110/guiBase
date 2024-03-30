@@ -13,9 +13,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(USE_LD "" CACHE STRING "which linker to use")
 set_property(CACHE USE_LD PROPERTY STRINGS "" "bfd" "gold" "lld" "mold")
 
-option(buildGuiBaseExample "should the example be build?" false)
-option(buildGuiBaseMultiThreaded "should the lib be build multithreaded?" true)
+option(buildGuiBaseExample "should the guiBase example be build?" false)
 
+if(MSVC)
+    option(buildGuiBaseMultiThreaded "should the lib be build multithreaded? (windows specific)" true)
+endif(MSVC)
 
 add_subdirectory(vendor)
 
@@ -39,13 +41,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     add_compile_options(-Wall -Werror -Wextra -Wconversion -Wunused)
 
     if (USE_LD)
-        add_link_options(-fuse-ld=${USE_LD}) # force use mold linker, faster linking
-    endif()
-    if(buildGuiBaseMultiThreaded)
-        #TODO fix multithreaded build
-        #include(ProcessorCount)
-        #ProcessorCount(CPU_CORE_COUNT)
-        #add_compile_options("-j ${CPU_CORE_COUNT}")
+        add_link_options(-fuse-ld=${USE_LD}) # set use of specified linker
     endif()
 elseif(MSVC)
     # for MSVC
