@@ -1,4 +1,4 @@
-#include "guiBase/Logger.h"
+#include "guiBase/Logger.hpp"
 
 #include <iostream>
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "guiBase/App.h"
+#include "guiBase/App.hpp"
 
 /// for marking variables as unused
 #define UNUSED(expr) (void)(expr)

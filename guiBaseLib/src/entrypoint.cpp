@@ -1,4 +1,4 @@
-#include "guiBase/entrypoint.h"
+#include "guiBase/entrypoint.hpp"
 
 namespace guiBase {
     int appMain(int argc, char** argv) {

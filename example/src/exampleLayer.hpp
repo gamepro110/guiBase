@@ -1,9 +1,9 @@
 #pragma once
 
-#include "guiBase/App.h"
-#include "guiBase/Layer.h"
-#include "guiBase/Logger.h"
-#include "guiBase/bit_stuff.h"
+#include "guiBase/App.hpp"
+#include "guiBase/Layer.hpp"
+#include "guiBase/Logger.hpp"
+#include "guiBase/bit_stuff.hpp"
 
 #include "imgui.h"
 

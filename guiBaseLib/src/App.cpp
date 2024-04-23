@@ -1,4 +1,4 @@
-#include "guiBase/App.h"
+#include "guiBase/App.hpp"
 
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_vulkan.h"
@@ -11,8 +11,6 @@
 
 #include "GLFW/glfw3.h"
 #include <vulkan/vulkan.h>
-
-#pragma region vulkan
 
 void check_vk_result(VkResult err);
 
@@ -288,8 +286,6 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd) {
 static void glfw_error_callback(int error, const char* description) {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
-
-#pragma endregion
 
 namespace guiBase {
     extern bool gRunning;

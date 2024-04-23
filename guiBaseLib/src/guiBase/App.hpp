@@ -1,7 +1,7 @@
 #pragma once
 
-#include <guiBase/Layer.h>
-#include <guiBase/Logger.h>
+#include <guiBase/Layer.hpp>
+#include <guiBase/Logger.hpp>
 
 #include <memory>
 #include <string>

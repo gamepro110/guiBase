@@ -1,9 +1,9 @@
-#include "exampleLayer.h"
+#include "exampleLayer.hpp"
 
-#include "guiBase/App.h"
-#include "guiBase/Layer.h"
-#include "guiBase/Logger.h"
-#include "guiBase/entrypoint.h"
+#include "guiBase/App.hpp"
+#include "guiBase/Layer.hpp"
+#include "guiBase/Logger.hpp"
+#include "guiBase/entrypoint.hpp"
 
 bool guiBase::gRunning = true;
 
