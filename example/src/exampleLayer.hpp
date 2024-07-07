@@ -6,6 +6,7 @@
 #include "guiBase/bit_stuff.hpp"
 
 #include "imgui.h"
+#include "misc/cpp/imgui_stdlib.h"
 
 class exampleLayer final : public guiBase::Layer {
 public:
@@ -39,6 +40,8 @@ public:
             ImGui::SameLine();
             ImGui::Text("%s", printStr.c_str());
             ImGui::Separator();
+
+            ImGui::InputTextMultiline("input with <std::string>", &text);
         }
         ImGui::End();
     }
@@ -51,4 +54,5 @@ private:
     uint8_t bitValue{ 0 };
     std::string printStr{};
     ImGuiWindowFlags windowFlags{ 0 | ImGuiWindowFlags_AlwaysAutoResize };
+    [[maybe_unused]] std::string text;
 };

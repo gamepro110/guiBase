@@ -25,6 +25,8 @@ file(
 	"imgui/backends/imgui_impl_glfw.h"
     "imgui/backends/imgui_impl_vulkan.cpp"
     "imgui/backends/imgui_impl_vulkan.h"
+    "imgui/misc/cpp/imgui_stdlib.cpp"
+    "imgui/misc/cpp/imgui_stdlib.h"
 )
 
 add_library(
