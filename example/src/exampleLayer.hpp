@@ -6,7 +6,6 @@
 #include "guiBase/bit_stuff.hpp"
 
 #include "imgui.h"
-#include "misc/cpp/imgui_stdlib.h"
 
 class exampleLayer final : public guiBase::Layer {
 public:
