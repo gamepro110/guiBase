@@ -4,6 +4,15 @@ project(guiBase)
 find_package(Vulkan REQUIRED) # must be before vender include to prevent the broken GLFW custom include
 find_package(Threads REQUIRED)
 
+# download CPM.cmake
+file(
+    DOWNLOAD
+    https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.3/CPM.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
+    EXPECTED_HASH SHA256=cc155ce02e7945e7b8967ddfaff0b050e958a723ef7aad3766d368940cb15494
+)
+include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
+
 set(vendorPath "${PROJECT_SOURCE_DIR}/vendor")
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -74,5 +83,7 @@ if(buildGuiBaseExample)
 add_subdirectory(example)
 endif()
 
-#TODO make tests
-#add_subdirectory(tests)
+if(PROJECT_IS_TOP_LEVEL)
+    enable_testing()
+    add_subdirectory(tests)
+endif(PROJECT_IS_TOP_LEVEL)
