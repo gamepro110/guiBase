@@ -8,7 +8,7 @@ using [GLFW][glfw] for cross platform window creation. while using [Dear ImGui][
 
 - [ ] add tests
 - [x] add `#include "misc/cpp/imgui_stdlib.cpp"` to [layer.hpp](<./guiBaseLib/src/guiBase/Layer.hpp>)
-- [ ] add `#include <format>` to [Logger.hpp](<./guiBaseLib/src/guiBase/Logger.hpp>)
+- [x] add `#include <format>` to [Logger.hpp](<./guiBaseLib/src/guiBase/Logger.hpp>)
 
 ### backlog
 
