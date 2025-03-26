@@ -24,14 +24,18 @@ target_link_libraries(
     guiBase
     PUBLIC
     glfw
-    ImGui
+    imgui
 )
 
 target_include_directories(
     guiBase
     PUBLIC
     "src/"
-    "${vendorPath}/imgui"
-    "${vendorPath}/glfw/include"
     "${Vulkan_INCLUDE_DIRS}"
+)
+
+target_compile_options(
+    guiBase
+    PUBLIC
+    -Wno-class-memaccess
 )

@@ -368,13 +368,14 @@ namespace guiBase {
         init_info.Queue = g_Queue;
         init_info.PipelineCache = g_PipelineCache;
         init_info.DescriptorPool = g_DescriptorPool;
+        init_info.RenderPass = wd->RenderPass;
         init_info.Subpass = 0;
         init_info.MinImageCount = g_MinImageCount;
         init_info.ImageCount = wd->ImageCount;
         init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
         init_info.Allocator = g_Allocator;
         init_info.CheckVkResultFn = check_vk_result;
-        ImGui_ImplVulkan_Init(&init_info, wd->RenderPass);
+        ImGui_ImplVulkan_Init(&init_info /*, wd->RenderPass*/);
 
         // Load default font
         ImFontConfig fontConfig;
@@ -394,7 +395,7 @@ namespace guiBase {
             err = vkBeginCommandBuffer(command_buffer, &begin_info);
             check_vk_result(err);
 
-            ImGui_ImplVulkan_CreateFontsTexture(command_buffer);
+            ImGui_ImplVulkan_CreateFontsTexture(/*command_buffer*/);
 
             VkSubmitInfo end_info = {};
             end_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -407,7 +408,7 @@ namespace guiBase {
 
             err = vkDeviceWaitIdle(g_Device);
             check_vk_result(err);
-            ImGui_ImplVulkan_DestroyFontUploadObjects();
+            // ImGui_ImplVulkan_DestroyFontUploadObjects();
         }
     }
 

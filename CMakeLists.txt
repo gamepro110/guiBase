@@ -1,56 +1,36 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.24)
 project(guiBase)
 
 find_package(Vulkan REQUIRED) # must be before vender include to prevent the broken GLFW custom include
 find_package(Threads REQUIRED)
 
-set(vendorPath "${PROJECT_SOURCE_DIR}/vendor")
-set(CMAKE_C_STANDARD 17)
+include(cmake_scripts/CPM.cmake)
+
+set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(USE_LD "" CACHE STRING "which linker to use")
 set_property(CACHE USE_LD PROPERTY STRINGS "" "bfd" "gold" "lld" "mold")
 
 option(buildGuiBaseExample "should the guiBase example be build?" false)
 
-if(MSVC)
-    option(buildGuiBaseMultiThreaded "should the lib be build multithreaded? (windows specific)" true)
-endif(MSVC)
-
 add_subdirectory(vendor)
-
-if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    add_compile_options(
-        # prevent C++98 compatability/errors
-        -Wno-c++98-compat
-        -Wno-c++98-compat-pedantic
-        # prevent c-style cast warnings
-        -Wno-old-style-cast
-        # prevent warning noting unknown documentation warnings
-        -Wno-documentation-unknown-command
-        -Wno-documentation-deprecated-sync
-        -Wno-documentation
-        -Wno-global-constructors
-    )
-endif()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     # for GCC and Clang
-    add_compile_options(-Wall -Werror -Wextra -Wconversion -Wunused)
+    add_compile_options(-Wall -Werror -Wextra -Wunused)
 
     if (USE_LD)
         add_link_options(-fuse-ld=${USE_LD}) # set use of specified linker
     endif()
 elseif(MSVC)
     # for MSVC
-    add_compile_options(/W4 /WX)
+    add_compile_options(/W4 /WX /permissive-)
     # /W4 == warning level 4 (equivilant to Wall)
     # /WX == treating warnings as errors
-    if(buildGuiBaseMultiThreaded)
-        add_compile_options(/MP)
-    endif()
 else()
     message(WARNING "Unsupported compiler detected, flags wont be set correctly")
 endif()
