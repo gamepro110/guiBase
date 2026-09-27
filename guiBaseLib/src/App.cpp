@@ -284,6 +284,9 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd) {
 }
 
 static void glfw_error_callback(int error, const char* description) {
+    if (error == 65548) { // disable "The platform does not provide the window position" error
+        return;
+    }
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
