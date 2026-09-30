@@ -34,8 +34,10 @@ target_include_directories(
     "${Vulkan_INCLUDE_DIRS}"
 )
 
-target_compile_options(
-    guiBase
-    PUBLIC
-    -Wno-class-memaccess
-)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(
+        guiBase
+        PUBLIC
+        -Wno-class-memaccess
+    )
+endif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
